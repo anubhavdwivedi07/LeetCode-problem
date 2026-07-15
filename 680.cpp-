@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution {
+public:
+    bool validPalindrome(string s) {
+        int count = 0;
+        int a = 0;
+        int b = s.size() - 1;
+        while (a < b) {
+            if (s[a] != s[b]) {
+
+                int i = a + 1, j = b;
+                bool leftSkip = true;
+                while (i < j) {
+                    if (s[i] != s[j]) {
+                        leftSkip = false;
+                        break;
+                    }
+                    i++;
+                    j--;
+                }
+
+                i = a; 
+                j = b - 1;
+                bool rightSkip = true;
+                while (i < j) {
+                    if (s[i] != s[j]) {
+                        rightSkip = false;
+                        break;
+                    }
+                    i++;
+                    j--;
+                }
+
+                return leftSkip || rightSkip;
+            }
+            a++;
+            b--;
+        }
+        return true;
+    }
+};
