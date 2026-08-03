@@ -11,32 +11,32 @@
 class Solution {
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
-       
-        vector<int> values;
-        ListNode* curr = head;
-        while (curr != nullptr) {
-            values.push_back(curr->val);
-            curr = curr->next;
+        int count = 0;
+        ListNode* temp = head;
+        while(temp!=NULL)
+        {
+            count++;
+            temp = temp->next;        }
+        if(count == n)
+        {
+            ListNode*  newhead = head->next;
+            delete(head);
+            return newhead;
         }
-
-     
-        int indexToRemove = values.size() - n;
-        values.erase(values.begin() + indexToRemove);
-
-        ListNode dummy(0);
-        ListNode* tail = &dummy;
-        for (int val : values) {
-            tail->next = new ListNode(val);
-            tail = tail->next;
+        int res = count- n ;
+        
+        temp = head;
+        while(temp!=NULL)
+        {
+            res--;
+        
+        if(res==0)
+            break;
+        temp =temp->next;
         }
-
-        curr = head;
-        while (curr != nullptr) {
-            ListNode* temp = curr;
-            curr = curr->next;
-            delete temp;
-        }
-
-        return dummy.next;
+        ListNode* delnode= temp->next;
+        temp->next= temp->next->next;
+        delete(delnode);
+        return head;
     }
 };
