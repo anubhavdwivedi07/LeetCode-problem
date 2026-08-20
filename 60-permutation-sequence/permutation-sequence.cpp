@@ -22,15 +22,15 @@ public:
                 break;
             }
 
-            int swapIdx = -1;
+            
             for (int i = n - 1; i > pivot; i--) {
                 if (arr[i] > arr[pivot]) {
-                    swapIdx = i;
+                    swap(arr[pivot], arr[i]);
                     break;
                 }
             }
 
-            swap(arr[pivot], arr[swapIdx]);
+            
 
             reverse(arr.begin() + pivot + 1, arr.end());
         }
